@@ -1,5 +1,6 @@
 #include "Aztec.h"
 
+// Working function that adds string to an array
 void Aztec::AddString(const char* str)
 {
 	aStrings.push_back(str);
