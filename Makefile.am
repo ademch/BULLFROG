@@ -4,6 +4,8 @@ aztec_SOURCES = main.cpp Aztec.cpp Aztec.h
 dist_man_MANS = aztec.1
 dist_pkgdata_DATA = data.txt
 
+SUBDIR = tests
+
 CTRLF_DIR=$(CURDIR)/deb/DEBIAN
 CTRLF_NAME=$(CTRLF_DIR)/control
 
