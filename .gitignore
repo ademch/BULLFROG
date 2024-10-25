@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 
+# Autotools cache
+autom4te.cache/
+
 # Compiled Object files
 *.slo
 *.lo
