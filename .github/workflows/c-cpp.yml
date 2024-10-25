@@ -2,11 +2,11 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "branchAutoTest" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "branchAutoTest" ]
   workflow_dispatch:
-    branch: [ "main" ]
+    branch: [ "branchAutoTest" ]
 
 jobs:
   build:
@@ -21,4 +21,6 @@ jobs:
 
     - name: make
       run: make
-    
+
+    - name: Autotest
+      run: ./tests/make check
