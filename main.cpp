@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "Aztec.h"
 
+int CreateHTTPserver();
+
 
 int main(int argc, char* argv[])
 {
@@ -10,6 +12,8 @@ int main(int argc, char* argv[])
 	aztec.AddString("The second string");
 
 	aztec.ShowText();
+
+	CreateHTTPserver();
 
 	return 0;
 }
