@@ -91,10 +91,10 @@ int CreateHTTPserver()
             
             if (iBytesRead == 0)
             {
-				printf("Client closed connection prematurely\n");
-				close(clientSocket);
-				continue;
-			}
+		printf("Client closed connection prematurely\n");
+		close(clientSocket);
+		continue;
+  	    }
 
             printf("\nParsing request...\n");
 
@@ -218,7 +218,7 @@ int CreateHTTPserver()
 		if (ptrBuffer)
 		{
                     sprintf(strFilePath, ".%s", strHTTP_requestPath);
-  			sprintf(strResponse, "%s", HTTP_201HEADER);
+  		    sprintf(strResponse, "%s", HTTP_201HEADER);
 					
                     sendPUTresponse(clientSocket, strFilePath, ptrBuffer, strResponse);
 		}
@@ -233,8 +233,6 @@ int CreateHTTPserver()
 
 		close(clientSocket);
 	}
-
-        
     }
     
     close(connectionSocket);
@@ -312,7 +310,7 @@ void sendPUTresponse(int fdSocket, char strFilePath[], char strBody[], char strR
     {
         printf("\nCannot write to client socket with error %d\n", iRes);
         return;
-	}
+    }
     
     iRes = write(fdFile, strBody, strlen(strBody));
     if (iRes < 0)
