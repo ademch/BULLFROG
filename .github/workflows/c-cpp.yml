@@ -2,11 +2,11 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "*" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "*" ]
   workflow_dispatch:
-    branch: [ "main" ]
+    branch: [ "*" ]
 
 jobs:
   build:
@@ -21,4 +21,17 @@ jobs:
 
     - name: make
       run: make
+
+    - name: Run check
+      run: make check
+
+    - name: Run distcheck
+      run: make distcheck
+
+    - name: Log in to dockerhub
+      run: docker login -u ${{ vars.DOCKER_USERNAME }} -p {{ secrets.DOCKER_TOKEN }}
+
+    - name: Build Dockerfile image
+      run: docker build --platform=linux/amd64 -t ademch/optimaaztec --push .
+    
     
