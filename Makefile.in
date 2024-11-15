@@ -989,6 +989,7 @@ uninstall-man: uninstall-man1
 
 .PRECIOUS: Makefile
 
+aztec_LDFLAGS -static 
 
 .PHONY: deb debug
 deb:

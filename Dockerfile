@@ -1,7 +1,11 @@
-FROM alpine
+FROM alpine AS build
+RUN apk add --no-cache build-base automake autoconf
 WORKDIR /home/optima
-COPY ./aztec .
-RUN apk add libstdc++
-RUN apk add libc6-compat
-ENTRYPOINT ["./aztec"]
+COPY . .
+RUN ./configure
+RUN make
+
+FROM alpine
+COPY --from=build /home/optima/aztec /usr/local/bin/aztec
+ENTRYPOINT ["/usr/local/bin/aztec"]
 
