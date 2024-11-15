@@ -16,7 +16,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install QEMU
+    - name: QEMU install
+      uses: docker/setup-qemu-action@v3
+
+    - name: Install Docker Buildx
       uses: docker/setup-buildx-action@v1
     
     - name: build ls
