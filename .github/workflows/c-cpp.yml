@@ -28,5 +28,14 @@ jobs:
     - name: Log in to dockerhub
       run: docker login -u ${{ vars.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
 
-    - name: Build Dockerfile image
-      run: docker build --platform=linux/amd64 -t ademch/optimaaztec --push .
+    - name: Build Dockerfile image for amd64
+      run: docker build --platform=linux/amd64 -t ademch/optimaaztec:amd64 --push .
+
+    - name: Build Dockerfile image for arm64
+      run: docker build --platform=linux/arm64 -t ademch/optimaaztec:arm64 --push .
+
+    - name: Create manifest
+      run: docker manifest create ademch/optimaaztec --amend ademch/optimaaztec:amd64 --amend ademch/optimaaztec:arm64
+
+    - name: Push manifest to docker hub
+      run: docker manifest push ademch/optimaaztec
