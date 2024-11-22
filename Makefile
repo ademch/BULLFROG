@@ -107,6 +107,8 @@ am_aztec_OBJECTS = main.$(OBJEXT) Aztec.$(OBJEXT) \
 	HTTP_Server.$(OBJEXT)
 aztec_OBJECTS = $(am_aztec_OBJECTS)
 aztec_LDADD = $(LDADD)
+aztec_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(aztec_LDFLAGS) \
+	$(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
 am__v_P_0 = false
@@ -361,6 +363,7 @@ top_builddir = .
 top_srcdir = .
 AUTOMAKE_OPTIONS = foreign
 aztec_SOURCES = main.cpp Aztec.cpp Aztec.h HTTP_Server.cpp
+aztec_LDFLAGS = -static 
 dist_man_MANS = aztec.1
 dist_pkgdata_DATA = data.txt
 SUBDIRS = tests
@@ -448,7 +451,7 @@ clean-binPROGRAMS:
 
 aztec$(EXEEXT): $(aztec_OBJECTS) $(aztec_DEPENDENCIES) $(EXTRA_aztec_DEPENDENCIES) 
 	@rm -f aztec$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(aztec_OBJECTS) $(aztec_LDADD) $(LIBS)
+	$(AM_V_CXXLD)$(aztec_LINK) $(aztec_OBJECTS) $(aztec_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
